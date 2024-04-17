@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import Form from "./components/Form";
-import StudentList from "./components/StudentList";
+import StudentList from "./components/studentList";
 
 const App = () => {
-  const [tipusEstudiant, setTipusEstudiant] = useState("No Graduat");
+  const [tipusEstudiant, setTipusEstudiant] = useState("Grau");
   const [ngPlaces, setNGPlaces] = useState(60);
   const [gPlaces, setGPlaces] = useState(40);
 
@@ -17,6 +17,8 @@ const App = () => {
       ? setGPlaces(updatedPlaces)
       : setNGPlaces(updatedPlaces);
   };
+
+  const [detallsEstudiant, setDetallEstudiants] = useState([]);
 
   return (
     <div className="App flex h-screen flex-col items-center justify-center ">
@@ -32,41 +34,43 @@ const App = () => {
             <label className="radioLabel">
               <input
                 type="radio"
-                value="No Graduat"
+                value="Grau"
                 name="programGroup"
                 defaultChecked
                 className="radioInput mr-2"
               />
-              No Graduat
+              Grau
             </label>
             <label className="radioLabel">
               <input
                 type="radio"
-                value="Graduat"
+                value="Postgrau"
                 name="programGroup"
                 className="radioInput mr-2"
               />
-              Graduat
+              Postgrau
             </label>
           </li>
           <li className="parentLabels my-2">
             Places disponibles per estudiant{" "}
             <strong>
               {tipusEstudiant}:{" "}
-              {tipusEstudiant === "Graduat" ? gPlaces : ngPlaces}
+              {tipusEstudiant === "Postgrau" ? gPlaces : ngPlaces}
             </strong>
           </li>
         </ul>
       </div>
+
       <Form
         tipusEstudiantSelect={tipusEstudiant}
         setPlacesDisponibles={setPlacesDisponibles}
-        placesActuals={tipusEstudiant === "Graduat" ? gPlaces : ngPlaces}
+        placesActuals={tipusEstudiant === "PostGrau" ? gPlaces : ngPlaces}
+        setDetallsEstudiant={setDetallEstudiants}
       />
-      
+
       <StudentList
         detallsEstudiant={detallsEstudiant}
-        setDetallsEstudiant={setDetallsEstudiant}
+        setDetallsEstudiant={setDetallEstudiants}
       />
     </div>
   );

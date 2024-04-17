@@ -4,10 +4,9 @@ const Form = (props) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [welcomeMessage, setWelcomeMessage] = useState("");
 
   const handleClick = (event) => {
-    handleInputReset('', '', '');
+    handleInputReset("", "", "");
     props.setPlacesDisponibles(props.placesActuals - 1);
     // Generació d'un ID per l'estudiant - 4digit
     const randomKey = Math.floor(1000 + Math.random() * 9000);
@@ -70,7 +69,7 @@ const Form = (props) => {
           </li>
           <li>
             <input
-              className="mb-4 w-full rounded bg-blue-500 p-2 px-4 py-2 font-bold text-white hover:bg-blue-700"
+              className="mb-4 w-full rounded bg-green-600 p-2 px-4 py-2 font-bold text-white hover:bg-blue-700"
               type="submit"
               name="Enrol"
               alt="Enrol"
@@ -78,11 +77,7 @@ const Form = (props) => {
               onClick={handleClick}
             />
           </li>
-          <li>
-            <label className="mb-4 block w-full p-2 text-2xl" id="studentMsg">
-              {welcomeMessage}
-            </label>
-          </li>
+          <li></li>
         </ul>
       </form>
     </div>

@@ -1,25 +1,31 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 // Test items
-let items = [];
-for (let i = 1; i < 5; i++) {
-  items.push({
-    key: i,
-    fname: "FirstName " + i,
-    lname: "LastName " + i,
-    program: "UG",
-    email: "Email " + i,
-  });
-}
-const StudentList = () => {
+// let items = [];
+// for (let i = 1; i < 5; i++) {
+//   items.push({
+//     key: i,
+//     fname: "FirstName " + i,
+//     lname: "LastName " + i,
+//     program: "UG",
+//     email: "Email " + i,
+//   });
+// }
+
+const StudentList = (props) => {
+    const [items, setItems] = useState([]);
+    useEffect(() => {
+      const isItemKey = props.detallsEstudiant.key;
+      if (isItemKey) {
+        setItems((prevItems) => [...prevItems, props.detallsEstudiant]);
+        props.setDetallsEstudiant({});
+      }
+    }, [props]);
+
   return (
     <table className="m-3 table-auto rounded-lg">
-      <Form
-        tipusEstudiantSelect={tipusEstudiant}
-        setPlacesDisponibles={setPlacesDisponibles}
-        placesActuals={tipusEstudiant === "PostGrau" ? gPlaces : ngPlaces}
-        setDetallsEstudiant={setDetallsEstudiant}
-      />
       <thead className="bg-blue-500 p-2 px-4 py-2 font-bold text-white">
         <tr>
           <th className="rounded-l-lg px-4 py-2">Nom</th>
@@ -33,7 +39,7 @@ const StudentList = () => {
           <tr key={item.key}>
             <td className="border px-4 py-2">{item.fname}</td>
             <td className="border px-4 py-2">{item.lname}</td>
-            <td className="border px-4 py-2">{item.program}</td>
+            <td className="border px-4 py-2">{item.programa}</td>
             <td className="border px-4 py-2">{item.email}</td>
           </tr>
         ))}
